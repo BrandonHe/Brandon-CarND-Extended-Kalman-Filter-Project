@@ -52,12 +52,6 @@ public:
    */
   void Predict();
 
-  /*
-   * Predcition Add function by Brandon
-   *
-   */
-  void PredictEKF();
-
   /**
    * Updates the state by using standard Kalman Filter equations
    * @param z The measurement at k+1

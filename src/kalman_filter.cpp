@@ -30,17 +30,6 @@ void KalmanFilter::Predict() {
 } 
 
 
-
-void KalmanFilter::PredictEKF() {
-  MatrixXd Fj = Tools::CalculateJacobian(F_);
-  VectorXd xj = Fj * x_;
-  MatrixXd Fjt = Fj.transpose();
-  P_ = Fj * P_ * Fjt * Q_;
-
-}
-
-
-
 void KalmanFilter::Update(const VectorXd &z) {
   /**
   TODO:
@@ -66,7 +55,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
-    MatrixXd Hj = Tools::CalculateJacobian( H_);
+    Tools T;
+    MatrixXd Hj = T.CalculateJacobian( H_);
     VectorXd z_pred = Hj * x_;
     VectorXd y = z - z_pred;
     MatrixXd Hjt = Hj.transpose();
